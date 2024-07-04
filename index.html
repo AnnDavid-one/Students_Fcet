@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+         /*   background: linear-gradient(to right, #00c6ff, #0072ff);
+          */  margin: 0;
+            padding: 0;
+            padding-bottom: 10px;
+            padding-top: 10%;
+
+            display: flex;
+            flex-direction: column;
+            height: 2000px;
+            color: #333;
+            background-color:#E0E0E0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-flow: column;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 450px;
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 0px;
+            padding: 10px;
+            height: 500px;
+            max-height: 1600px;
+            transition: all 0.2s;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .form-group {
+            margin-bottom: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 1px;
+            font-weight: bold;
+            color: #555;
+        }
+        select, input[type="number"] {
+            width: 91%;
+            height: 30px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 3px;
+            transition: border-color 0.3s;
+    
+        }
+        #entryType{
+          width:100%;
+          height:50px;
+        }
+        select:focus, input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .semester {
+            margin-bottom: 20px;
+        }
+        .results {
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            transition: all 1s;
+        }
+        #davidHart {
+            position: relative;
+            margin: 0 auto;
+            color: #18AB00;
+            font-weight: bold;
+        }
+        .container1 {
+            padding: 10px;
+        }
+        .containerGpa {
+            max-width: 450px;
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 20%;
+            background: #F9F9F9;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        #hiHGpa {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .course {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        #labelGpa {
+            margin-right: 10px;
+            flex: 1;
+            font-weight: bold;
+        }
+        #inputGpa[type="text"], #inputGpa[type="number"] {
+            width: calc(100% - 4px);
+            padding: 8px;
+            margin-right: 2px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 70px;
+        }
+        #buttonGpa {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #buttonGpa:hover {
+            background-color: #45a049;
+        }
+        #gpa {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            color: #4CAF50;
+        }
+        #selectGpa {
+            font-weight: bold;
+            border-radius: 20%;
+            height: 50px;
+        }
+.buttonGpa{
+    
+    margin-bottom: 100px;
+       }
+       footer {
+            background-color: #0A042ECC;
+            color: white;
+            position: relative;
+            margin-bottom: 0;
+            margin-top: 100px;
+            height: 200px;
+            font-weight: bolder;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+            list-style-type: disc;
+            text-decoration-style: dotted;
+            background-color: #0F3C11;
+            background: linear-gradient(to right, #001030, #1C4D19);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CGPA Calculator</h1>
+        <div class="form-group">
+            <label for="entryType">Select Entry Type:</label>
+            <select id="entryType">
+                <option value="degree">Degree (8 Semesters)</option>
+                <option value="direct">Direct Entry (6 Semesters)</option>
+            </select>
+        </div>
+        <button onclick="generateSemesters(), hEight()">Generate Semesters</button>
+        <div id="semesters"></div>
+        <button onclick="calculateCGPA()">Calculate CGPA</button>
+        <div class="results" id="results"></div>
+        <p>Click here to <a href="#">calculate your GPA</a></p>
+    </div> <br>
+    <div id="davidHart">
+        <h5 id="davidHarth5">©CGPA calculator by David Harts</h5>
+    </div>
+
+    <!-- THIS IS FOR THE GPA CALCULATOR -->
+    
+    <div class="container1">
+        <div class="containerGpa">
+            <h1 id="hiHGpa">GPA Calculator</h1>
+            <div id="courses"></div>
+            <button onclick="addCourse()" id="buttonGpa">Add Course</button>
+            <button onclick="calculateGPA()" id="buttonGpa">Calculate GPA</button>
+            <h2 id="gpa">GPA: </h2>
+            <button onclick="transferGPAtoCGPA()"  class="buttonGpa" id="buttonGpa">Transfer GPA to CGPA</button>
+        </div>
+    </div> <br>
+    <p style="position: relative; margin: 0 auto; color: #0A0A17; font-weight: bold;">
+        Click here for <a href="https://wa.me/+2347066718671" style="position: relative; margin: 0 auto; color: #0A0A17; font-weight: bold; font-style: italic;">more info</a>
+    </p>
+    <footer>
+        <p>"The above CGPA calculator is a project proposal presented by Okechukwu U. David, an undergraduate student in partial fulfillment of the requirements for the degree of Bachelor of Science/Education in Computer Science."</p>
+    </footer>
+
+    <script>
+        let currentSemester = 0;
+
+        function hEight() {
+            document.querySelector(".container").style.height = "1500px";
+        }
+
+        function generateSemesters() {
+            const entryType = document.getElementById('entryType').value;
+            const numSemesters = entryType === 'degree' ? 8 : 6;
+            const semestersDiv = document.getElementById('semesters');
+            semestersDiv.innerHTML = '';
+            currentSemester = 0;
+
+            for (let i = 0; i < numSemesters; i++) {
+                const semesterDiv = document.createElement('div');
+                semesterDiv.classList.add('semester');
+                semesterDiv.innerHTML = `
+                    <h4>Semester ${i + 1}</h4>
+                    <div class="form-group">
+                        <label for="gpa${i}"></label>
+                        <input type="number" id="gpa${i}" min="0" max="5" step="0.01" placeholder="Please enter grades">
+                    </div>
+                `;
+                semestersDiv.appendChild(semesterDiv);
+            }
+        }
+
+        function calculateCGPA() {
+            const entryType = document.getElementById('entryType').value;
+            
+            const numSemesters = entryType === 'degree' ? 8 : 6;
+            let totalGPA = 0;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            for (let i = 0; i < numSemesters; i++) {
+                const gpa = parseFloat(document.getElementById(`gpa${i}`).value);
+                totalGPA += gpa;
+            }
+
+            const cgpa = totalGPA / numSemesters;
+            resultsDiv.innerHTML += `<p>Cumulative GPA (CGPA): ${cgpa.toFixed(2)}</p>`;
+            resultsDiv.innerHTML += `<p>Class: ${determineClass(cgpa)}</p>`;
+        }
+
+        function determineClass(cgpa) {
+            if (cgpa > 5.00) {
+                return "error";
+            } else if (cgpa >= 4.50 && cgpa <= 5.00) {
+                return "First Class";
+            } else if (cgpa >= 3.50 && cgpa < 4.50) {
+                return "Second Class Upper";
+            } else if (cgpa >= 2.40 && cgpa < 3.50) {
+                return "Second Class Lower";
+            } else if (cgpa >= 1.50 && cgpa < 2.40) {
+                return "Third Class";
+            } else if (cgpa >= 1.00 && cgpa < 1.50) {
+                return "Pass";
+            } else if (cgpa >= 0 && cgpa < 1.00) {
+                return "Pass";
+            } else {
+                return "Check grades";
+            }
+        }
+
+        // THIS IS THE GPA CALCULATOR SCRIPT
+
+        function addCourse() {
+            const courseDiv = document.createElement('div');
+            courseDiv.className = 'course';
+            courseDiv.innerHTML = `
+                <label id="labelGpa">Course Code <input id="inputGpa" type="text" class="course-name"></label>
+                <label id="labelGpa">Credits <input id="inputGpa" type="number" class="course-credits" min="0" step="0.5"></label>
+                <label id="labelGpa">Grade
+                    <select class="course-grade" id="selectGpa">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+       <option value="D">D</option>
+         <option value="E">E</option>
+                        <option value="F">F</option>
+                    </select>
+                </label>
+            `;
+            document.getElementById('courses').appendChild(courseDiv);
+        }
+
+        function calculateGPA() {
+            const courses = document.querySelectorAll('.course');
+            let totalCredits = 0;
+            let totalPoints = 0;
+            courses.forEach(course => {
+                const credits = parseFloat(course.querySelector('.course-credits').value);
+                const grade = course.querySelector('.course-grade').value;
+                const gradePoints = getGradePoints(grade);
+                if (!isNaN(credits) && gradePoints !== null) {
+                    totalCredits += credits;
+                    totalPoints += credits * gradePoints;
+                }
+            });
+            const gpa = totalPoints / totalCredits;
+            document.getElementById('gpa').textContent = `GPA: ${gpa.toFixed(2)}`;
+        }
+
+        function getGradePoints(grade) {
+            switch (grade) {
+                case 'A': return 5.0;
+                case 'B': return 4.0;
+                case 'C': return 3.0;
+              case 'D': return 2.0;
+              case 'E': return 1.0;
+
+                case 'F': return 0.0;
+                default: return null;
+            }
+        }
+
+        function transferGPAtoCGPA() {
+            const gpa = parseFloat(document.getElementById('gpa').textContent.split(': ')[1]);
+            const entryType = document.getElementById('entryType').value;
+            const numSemesters = entryType === 'degree' ? 8 : 6;
+            if (currentSemester < numSemesters) {
+                document.getElementById(`gpa${currentSemester}`).value = gpa.toFixed(2);
+                currentSemester++;
+            } else {
+                alert("All semesters have been filled with GPA values.");
+            }
+        }
+    </script>
+</body>
+</html>
